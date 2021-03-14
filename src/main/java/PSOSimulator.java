@@ -7,9 +7,10 @@ import javafx.stage.Stage;
 public class PSOSimulator extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/views/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/mainView.fxml"));
+        primaryStage.setTitle("PSO Simulator");
+        primaryStage.setScene(new Scene(root, 1304, 753));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
