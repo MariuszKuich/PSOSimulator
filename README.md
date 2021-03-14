@@ -1,0 +1,1 @@
+Aplikacja pozwalająca symulować działanie metaheurystycznego algorytmu PSO (Particle Swarm Optimization). Napisana w języku Java z wykorzystaniem JavaFX, biblioteki Jzy3d oraz narzędzia Maven do zarządzania zależnościami.
