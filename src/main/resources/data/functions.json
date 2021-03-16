@@ -1,0 +1,5 @@
+{
+    "Sphere function": "-(x * x + y * y)",
+    "Himmelblau function": "-(Math.pow(x * x + y - 11, 2) + Math.pow(x + y * y - 7, 2))",
+    "Beale function":"-(Math.pow(1.5 - x + x * y, 2) + Math.pow(2.25 - x + x * y * y, 2) + Math.pow(2.625 - x + x * y * y * y, 2))"
+}
