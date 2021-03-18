@@ -2,9 +2,7 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import repositories.FunctionRepository;
 
 public class MainViewController {
@@ -26,6 +24,27 @@ public class MainViewController {
     @FXML
     private TextArea taFunctionFormula;
 
+    @FXML
+    private TextField tfVariablesRange;
+
+    @FXML
+    private Button btnUpdateFunction;
+
+    @FXML
+    private Spinner<Integer> spinnerNumberOfParticles;
+
+    @FXML
+    private Slider sliderSpeed;
+
+    @FXML
+    private Slider sliderInertia;
+
+    @FXML
+    private Slider sliderLocalOptimum;
+
+    @FXML
+    private Slider sliderGlobalOptimum;
+
     public void initialize() {
         cbFunction.getItems().addAll(functionRepository.getFunctionsNamesSet());
     }
@@ -42,6 +61,11 @@ public class MainViewController {
 
     @FXML
     void btnStartStop_clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnUpdateFunction_clicked(ActionEvent event) {
 
     }
 

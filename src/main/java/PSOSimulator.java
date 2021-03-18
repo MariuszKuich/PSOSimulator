@@ -9,7 +9,7 @@ public class PSOSimulator extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/views/mainView.fxml"));
         primaryStage.setTitle("PSO Simulator");
-        primaryStage.setScene(new Scene(root, 1304, 753));
+        primaryStage.setScene(new Scene(root, 1304, 709));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
