@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
@@ -12,7 +14,7 @@
       <ChoiceBox fx:id="cbFunction" layoutX="27.0" layoutY="107.0" onAction="#cbFunction_selectedItemChanged" prefHeight="25.0" prefWidth="234.0" />
       <Label layoutX="27.0" layoutY="145.0" prefHeight="25.0" prefWidth="138.0" text="Function formula" />
       <TextArea fx:id="taFunctionFormula" layoutX="27.0" layoutY="177.0" prefHeight="88.0" prefWidth="234.0" wrapText="true" />
-      <TextField fx:id="tfVariablesRange" layoutX="27.0" layoutY="304.0" prefHeight="25.0" prefWidth="234.0" />
+      <TextField fx:id="tfVariablesRange" layoutX="27.0" layoutY="304.0" prefHeight="25.0" prefWidth="234.0" text="-1, 1, -1, 1" />
       <Label layoutX="27.0" layoutY="279.0" prefHeight="25.0" prefWidth="138.0" text="Range of variables" />
       <Button fx:id="btnUpdateFunction" layoutX="27.0" layoutY="419.0" mnemonicParsing="false" onAction="#btnUpdateFunction_clicked" prefHeight="35.0" prefWidth="234.0" text="Update function" />
       <Label layoutX="27.0" layoutY="345.0" prefHeight="25.0" prefWidth="138.0" text="Number of particles" />
@@ -29,6 +31,9 @@
       <Slider fx:id="sliderInertia" layoutX="22.0" layoutY="554.0" max="0.1" prefHeight="14.0" prefWidth="234.0" value="0.02" />
       <Slider fx:id="sliderLocalOptimum" layoutX="22.0" layoutY="607.0" max="0.1" prefHeight="14.0" prefWidth="234.0" value="0.04" />
       <Slider fx:id="sliderGlobalOptimum" layoutX="22.0" layoutY="660.0" max="0.1" prefHeight="14.0" prefWidth="234.0" value="0.05" />
-      <Pane fx:id="pnChart" layoutX="294.0" layoutY="19.0" prefHeight="671.0" prefWidth="990.0" />
+      <Pane fx:id="pnChart" layoutX="294.0" layoutY="19.0" prefHeight="671.0" prefWidth="990.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Pane>
    </children>
 </AnchorPane>
