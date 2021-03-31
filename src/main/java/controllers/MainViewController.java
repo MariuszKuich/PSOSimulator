@@ -3,11 +3,8 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.CalculationData;
-import org.jzy3d.chart.AWTChart;
-import org.jzy3d.javafx.JavaFXChartFactory;
 import repositories.FunctionRepository;
 
 public class MainViewController {
@@ -19,28 +16,25 @@ public class MainViewController {
    private ParticlesController particlesController = new ParticlesController();
 
     @FXML
-    private Button btnStartStop;
-
-    @FXML
-    private Button btnNextStep;
-
-    @FXML
-    private Button btnRestart;
-
-    @FXML
     private ChoiceBox<String> cbFunction;
 
     @FXML
     private TextArea taFunctionFormula;
 
     @FXML
-    private TextField tfVariablesRange;
-
-    @FXML
-    private Button btnUpdateFunction;
-
-    @FXML
     private Spinner<Integer> spinnerNumberOfParticles;
+
+    @FXML
+    private Spinner<Integer> spinnerMinX;
+
+    @FXML
+    private Spinner<Integer> spinnerMaxX;
+
+    @FXML
+    private Spinner<Integer> spinnerMinY;
+
+    @FXML
+    private Spinner<Integer> spinnerMaxY;
 
     @FXML
     private Slider sliderSpeed;
@@ -59,19 +53,38 @@ public class MainViewController {
 
     public void initialize() {
         cbFunction.getItems().addAll(functionRepository.getFunctionsNamesSet());
-        particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
+        addSlidersEventListeners();
+        setDefaultCalculationData();
+        setDefaultChartData();
+    }
+
+    private void addSlidersEventListeners() {
+        sliderSpeed.valueProperty().addListener((observable, oldValue, newValue) ->
+                CalculationData.setSpeed(newValue.doubleValue())
+        );
+        sliderInertia.valueProperty().addListener((observable, oldValue, newValue) ->
+                CalculationData.setInertia(newValue.doubleValue())
+        );
+        sliderLocalOptimum.valueProperty().addListener((observable, oldValue, newValue) ->
+                CalculationData.setAspirationLocalOptimum(newValue.doubleValue())
+        );
+        sliderGlobalOptimum.valueProperty().addListener((observable, oldValue, newValue) ->
+                CalculationData.setAspirationGlobalOptimum(newValue.doubleValue())
+        );
+    }
+
+    private void setDefaultCalculationData() {
         CalculationData.setSpeed(sliderSpeed.getValue());
         CalculationData.setInertia(sliderInertia.getValue());
         CalculationData.setAspirationLocalOptimum(sliderLocalOptimum.getValue());
         CalculationData.setAspirationGlobalOptimum(sliderGlobalOptimum.getValue());
-        
-//        JavaFXChartFactory factory = new JavaFXChartFactory();
-//        AWTChart chart  = chartController.getDemoChart(factory, "offscreen");
-//        ImageView imageView = factory.bindImageView(chart);
-//        imageView.setFitHeight(671.0);
-//        imageView.setFitWidth(990.0);
-//        pnChart.getChildren().add(imageView);
+    }
 
+    private void setDefaultChartData() {
+        String defaultFunctionName = functionRepository.getFunctionsNamesSet().iterator().next();
+        cbFunction.setValue(defaultFunctionName);
+        taFunctionFormula.setText(functionRepository.getFormulaByFunctionName(defaultFunctionName));
+        btnUpdateFunction_clicked(new ActionEvent());
     }
 
     @FXML
@@ -91,7 +104,15 @@ public class MainViewController {
 
     @FXML
     void btnUpdateFunction_clicked(ActionEvent event) {
+        particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
+        variablesRangesGetValues();
+    }
 
+    private void variablesRangesGetValues() {
+        CalculationData.setMinX(spinnerMinX.getValue());
+        CalculationData.setMaxX(spinnerMaxX.getValue());
+        CalculationData.setMinY(spinnerMinY.getValue());
+        CalculationData.setMaxY(spinnerMaxY.getValue());
     }
 
     @FXML
