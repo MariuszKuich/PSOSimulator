@@ -3,8 +3,11 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.CalculationData;
+import org.jzy3d.chart.AWTChart;
+import org.jzy3d.javafx.JavaFXChartFactory;
 import repositories.FunctionRepository;
 
 public class MainViewController {
@@ -56,6 +59,8 @@ public class MainViewController {
         addSlidersEventListeners();
         setDefaultCalculationData();
         setDefaultChartData();
+
+        redrawChart();
     }
 
     private void addSlidersEventListeners() {
@@ -81,10 +86,19 @@ public class MainViewController {
     }
 
     private void setDefaultChartData() {
-        String defaultFunctionName = functionRepository.getFunctionsNamesSet().iterator().next();
-        cbFunction.setValue(defaultFunctionName);
-        taFunctionFormula.setText(functionRepository.getFormulaByFunctionName(defaultFunctionName));
+        cbFunction.getSelectionModel().select(0);
+        var firstCbFunctionElement = cbFunction.getItems().get(0);
+        taFunctionFormula.setText(functionRepository.getFormulaByFunctionName(firstCbFunctionElement));
         btnUpdateFunction_clicked(new ActionEvent());
+    }
+
+    private void redrawChart() {
+        JavaFXChartFactory factory = new JavaFXChartFactory();
+        AWTChart chart  = chartController.getDemoChart(factory, "offscreen", CalculationData.getFunctionFormula());
+        ImageView imageView = factory.bindImageView(chart);
+        imageView.setFitHeight(500.0);
+        imageView.setFitWidth(500.0);
+        pnChart.getChildren().add(imageView);
     }
 
     @FXML
@@ -106,6 +120,10 @@ public class MainViewController {
     void btnUpdateFunction_clicked(ActionEvent event) {
         particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
         variablesRangesGetValues();
+        String selectedFunction = cbFunction.getSelectionModel().getSelectedItem();
+        CalculationData.setFunctionFormula(functionRepository.getMapperByFunctionName(selectedFunction));
+
+        redrawChart();
     }
 
     private void variablesRangesGetValues() {

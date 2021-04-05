@@ -1,30 +1,43 @@
 package repositories;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
+import models.FunctionFormula;
+import org.jzy3d.plot3d.builder.Mapper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class FunctionRepository {
-    private Map<String, String> functionsMap = new HashMap<>();
+    private Map<String, FunctionFormula> functionsMap;
 
     public FunctionRepository() {
-        try {
-            initializeFunctionsMap();
-        }
-        catch(IOException e) {
-            System.out.println(e.getMessage());
-        }
+        initializeFunctionsMap();
     }
 
-    private void initializeFunctionsMap() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File jsonFile = new File(getClass().getResource("/data/functions.json").getFile());
-        TypeReference<HashMap<String, String>> typeRef = new TypeReference<>() {};
-        functionsMap = objectMapper.readValue(jsonFile, typeRef);
+    private void initializeFunctionsMap() {
+        functionsMap = new HashMap<>();
+        functionsMap.put("Sphere function",
+                new FunctionFormula("-(x * x + y * y)", new Mapper() {
+                    @Override
+                    public double f(double x, double y) {
+                        return -(x * x + y * y);
+                    }
+        }));
+        functionsMap.put("Himmelblau function",
+                new FunctionFormula("-(Math.pow(x * x + y - 11, 2) + Math.pow(x + y * y - 7, 2))",
+                        new Mapper() {
+                    @Override
+                    public double f(double x, double y) {
+                        return -(Math.pow(x * x + y - 11, 2) + Math.pow(x + y * y - 7, 2));
+                    }
+        }));
+        functionsMap.put("Matyas function",
+                new FunctionFormula("-(0.26 * (x * x + y * y) - 0.48 * x * y)",
+                        new Mapper() {
+                            @Override
+                            public double f(double x, double y) {
+                                return -(0.26 * (x * x + y * y) - 0.48 * x * y);
+                            }
+        }));
     }
 
     public Set<String> getFunctionsNamesSet() {
@@ -32,6 +45,10 @@ public class FunctionRepository {
     }
 
     public String getFormulaByFunctionName(String functionName) {
-        return functionsMap.get(functionName);
+        return functionsMap.get(functionName).getFormulaString();
+    }
+
+    public Mapper getMapperByFunctionName(String functionName) {
+        return functionsMap.get(functionName).getFormulaMapper();
     }
 }

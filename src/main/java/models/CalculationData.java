@@ -61,14 +61,6 @@ public abstract class CalculationData {
         CalculationData.aspirationGlobalOptimum = aspirationGlobalOptimum;
     }
 
-    public static double aspirationGlobalOptimum() {
-        return aspirationGlobalOptimum;
-    }
-
-    public static void aspirationGlobalOptimum(double aspirationGlobalOptimum) {
-        CalculationData.aspirationGlobalOptimum = aspirationGlobalOptimum;
-    }
-
     public static Coord3d getGlobalOptimumPosition() {
         return globalOptimumPosition;
     }
