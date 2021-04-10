@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.CalculationData;
+import models.FunctionData;
 import org.jzy3d.chart.AWTChart;
 import org.jzy3d.javafx.JavaFXChartFactory;
 import repositories.FunctionRepository;
@@ -17,6 +18,8 @@ public class MainViewController {
    private ChartController chartController = new ChartController();
 
    private ParticlesController particlesController = new ParticlesController();
+
+   private CalculationController calculationController = new CalculationController();
 
     @FXML
     private ChoiceBox<String> cbFunction;
@@ -87,9 +90,19 @@ public class MainViewController {
 
     private void setDefaultChartData() {
         cbFunction.getSelectionModel().select(0);
-        var firstCbFunctionElement = cbFunction.getItems().get(0);
-        taFunctionFormula.setText(functionRepository.getFormulaByFunctionName(firstCbFunctionElement));
+        String firstCbFunctionElement = cbFunction.getItems().get(0);
+        updateFunctionDataControls(firstCbFunctionElement);
         btnUpdateFunction_clicked(new ActionEvent());
+    }
+
+    private void updateFunctionDataControls(String functionName) {
+        FunctionData function = functionRepository.getFunctionDataByFunctionName(functionName);
+
+        taFunctionFormula.setText(function.getFormulaString());
+        spinnerMinX.getValueFactory().setValue(function.getDefaultMinX());
+        spinnerMaxX.getValueFactory().setValue(function.getDefaultMaxX());
+        spinnerMinY.getValueFactory().setValue(function.getDefaultMinY());
+        spinnerMaxY.getValueFactory().setValue(function.getDefaultMaxY());
     }
 
     private void redrawChart() {
@@ -118,10 +131,12 @@ public class MainViewController {
 
     @FXML
     void btnUpdateFunction_clicked(ActionEvent event) {
-        particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
         variablesRangesGetValues();
         String selectedFunction = cbFunction.getSelectionModel().getSelectedItem();
-        CalculationData.setFunctionFormula(functionRepository.getMapperByFunctionName(selectedFunction));
+        CalculationData.setFunctionFormula(functionRepository.getFunctionDataByFunctionName(selectedFunction).getFormulaMapper());
+        particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
+        particlesController.initializeParticlesWithRandomLocations();
+        System.out.println(CalculationData.getGlobalOptimumPosition());
 
         redrawChart();
     }
@@ -136,6 +151,6 @@ public class MainViewController {
     @FXML
     void cbFunction_selectedItemChanged(ActionEvent event) {
         String selectedKey = (String)((ChoiceBox)event.getSource()).getSelectionModel().getSelectedItem();
-        taFunctionFormula.setText(functionRepository.getFormulaByFunctionName(selectedKey));
+        updateFunctionDataControls(selectedKey);
     }
 }

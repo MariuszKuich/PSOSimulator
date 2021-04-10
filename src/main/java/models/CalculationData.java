@@ -3,6 +3,8 @@ package models;
 import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.builder.Mapper;
 
+import java.util.List;
+
 public abstract class CalculationData {
 
     private static Mapper functionFormula;
@@ -28,6 +30,8 @@ public abstract class CalculationData {
     private static int maxY;
 
     private static double speed;
+
+    private static List<Particle> particlesList;
 
     public static Mapper getFunctionFormula() {
         return functionFormula;
@@ -123,5 +127,13 @@ public abstract class CalculationData {
 
     public static void setSpeed(double speed) {
         CalculationData.speed = speed;
+    }
+
+    public static List<Particle> getParticlesList() {
+        return particlesList;
+    }
+
+    public static void setParticlesList(List<Particle> particlesList) {
+        CalculationData.particlesList = particlesList;
     }
 }

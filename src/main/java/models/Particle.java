@@ -13,6 +13,7 @@ public class Particle {
     public Particle(Coord3d position) {
         velocity = 0;
         this.position = position;
+        localOptimumPosition = position;
     }
 
     public double getVelocity() {
