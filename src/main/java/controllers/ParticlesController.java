@@ -20,10 +20,20 @@ public class ParticlesController {
         List<Particle> particlesList = new ArrayList<>();
         for(int i = 0 ; i < particlesNumber ; i++) {
             Particle particle = new Particle(getRandomPosition());
+            setInitialVelocities(particle);
             updateGlobalOptimumIfNecessary(particle.localOptimumPosition());
             particlesList.add(particle);
         }
         CalculationData.setParticlesList(particlesList);
+    }
+
+    private void setInitialVelocities(Particle particle) {
+        particle.setVelocityX(getRandomVelocity(CalculationData.getMinX(), CalculationData.getMaxX()));
+        particle.setVelocityY(getRandomVelocity(CalculationData.getMinY(), CalculationData.getMaxY()));
+    }
+
+    private double getRandomVelocity(int minCoord, int maxCoord) {
+        return (Math.random() - 0.5) * (maxCoord - minCoord) * 2;
     }
 
     private Coord3d getRandomPosition() {
