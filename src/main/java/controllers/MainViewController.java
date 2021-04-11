@@ -62,8 +62,6 @@ public class MainViewController {
         addSlidersEventListeners();
         setDefaultCalculationData();
         setDefaultChartData();
-
-        redrawChart();
     }
 
     private void addSlidersEventListeners() {
@@ -106,6 +104,7 @@ public class MainViewController {
     }
 
     private void redrawChart() {
+        pnChart.getChildren().clear();
         JavaFXChartFactory factory = new JavaFXChartFactory();
         AWTChart chart  = chartController.getDemoChart(factory, "offscreen", CalculationData.getFunctionFormula());
         ImageView imageView = factory.bindImageView(chart);
