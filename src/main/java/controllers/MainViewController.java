@@ -9,6 +9,7 @@ import models.CalculationData;
 import models.FunctionData;
 import org.jzy3d.chart.AWTChart;
 import org.jzy3d.javafx.JavaFXChartFactory;
+import org.jzy3d.maths.Coord3d;
 import repositories.FunctionRepository;
 
 public class MainViewController {
@@ -18,8 +19,6 @@ public class MainViewController {
    private ChartController chartController = new ChartController();
 
    private ParticlesController particlesController = new ParticlesController();
-
-   private CalculationController calculationController = new CalculationController();
 
     @FXML
     private ChoiceBox<String> cbFunction;
@@ -115,7 +114,8 @@ public class MainViewController {
 
     @FXML
     void btnNextStep_clicked(ActionEvent event) {
-
+        particlesController.updateParticlesVelocitiesAndCoordinates();
+        redrawChart();
     }
 
     @FXML
@@ -134,8 +134,8 @@ public class MainViewController {
         String selectedFunction = cbFunction.getSelectionModel().getSelectedItem();
         CalculationData.setFunctionFormula(functionRepository.getFunctionDataByFunctionName(selectedFunction).getFormulaMapper());
         particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
+        CalculationData.setGlobalOptimumPosition(null);
         particlesController.initializeParticlesWithRandomLocations();
-        System.out.println(CalculationData.getGlobalOptimumPosition());
 
         redrawChart();
     }

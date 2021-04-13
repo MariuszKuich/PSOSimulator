@@ -21,19 +21,10 @@ public class ParticlesController {
         for(int i = 0 ; i < particlesNumber ; i++) {
             Particle particle = new Particle(getRandomPosition());
             setInitialVelocities(particle);
-            updateGlobalOptimumIfNecessary(particle.localOptimumPosition());
+            updateGlobalOptimumIfNecessary(particle.getPosition());
             particlesList.add(particle);
         }
         CalculationData.setParticlesList(particlesList);
-    }
-
-    private void setInitialVelocities(Particle particle) {
-        particle.setVelocityX(getRandomVelocity(CalculationData.getMinX(), CalculationData.getMaxX()));
-        particle.setVelocityY(getRandomVelocity(CalculationData.getMinY(), CalculationData.getMaxY()));
-    }
-
-    private double getRandomVelocity(int minCoord, int maxCoord) {
-        return (Math.random() - 0.5) * (maxCoord - minCoord) * 2;
     }
 
     private Coord3d getRandomPosition() {
@@ -54,10 +45,60 @@ public class ParticlesController {
         return function.f(xCoord, yCoord);
     }
 
-    private void updateGlobalOptimumIfNecessary(Coord3d localOptimum) {
+    private void setInitialVelocities(Particle particle) {
+        particle.setVelocityX(getRandomVelocity(CalculationData.getMinX(), CalculationData.getMaxX()));
+        particle.setVelocityY(getRandomVelocity(CalculationData.getMinY(), CalculationData.getMaxY()));
+    }
+
+    private double getRandomVelocity(int minCoord, int maxCoord) {
+        return (Math.random() - 0.5) * (maxCoord - minCoord) * 2;
+    }
+
+    private void updateGlobalOptimumIfNecessary(Coord3d position) {
         if(CalculationData.getGlobalOptimumPosition() == null
-                || localOptimum.z > CalculationData.getGlobalOptimumPosition().z) {
-            CalculationData.setGlobalOptimumPosition(localOptimum);
+                || position.z > CalculationData.getGlobalOptimumPosition().z) {
+            CalculationData.setGlobalOptimumPosition(position);
+        }
+    }
+
+    public void updateParticlesVelocitiesAndCoordinates() {
+        for(Particle particle : CalculationData.getParticlesList()) {
+            updateParticleVelocity(particle);
+            updateParticleCoordinates(particle);
+            updateGlobalOptimumIfNecessary(particle.getPosition());
+        }
+    }
+
+    private void updateParticleVelocity(Particle particle) {
+        particle.setVelocityX(calculateVelocityForCoord(particle.getVelocityX(), particle.getPosition().x,
+                particle.getLocalOptimumPosition().x, CalculationData.getGlobalOptimumPosition().x));
+        particle.setVelocityY(calculateVelocityForCoord(particle.getVelocityY(), particle.getPosition().y,
+                particle.getLocalOptimumPosition().y, CalculationData.getGlobalOptimumPosition().y));
+    }
+
+    private double calculateVelocityForCoord(double particleVelocity, double particleCoord, double localOptimumCoord, double globalOptimumCoord) {
+        double rl = getRandomFromRange(0, 1);
+        double rg = getRandomFromRange(0, 1);
+        return CalculationData.getInertia() * particleVelocity
+                + CalculationData.getAspirationLocalOptimum() * rl * (localOptimumCoord - particleCoord)
+                + CalculationData.getAspirationGlobalOptimum() * rg * (globalOptimumCoord - particleCoord);
+    }
+
+    private void updateParticleCoordinates(Particle particle) {
+        Coord3d newPosition = new Coord3d();
+        Coord3d currentPosition = particle.getPosition();
+        newPosition.x = (float) (currentPosition.x + particle.getVelocityX());
+        newPosition.y = (float) (currentPosition.y + particle.getVelocityY());
+        newPosition.z = (float) calculateZCoord(newPosition.x, newPosition.y);
+
+        updateLocalOptimumIfNecessary(particle, newPosition);
+
+        particle.setPosition(newPosition);
+    }
+
+    private void updateLocalOptimumIfNecessary(Particle particle, Coord3d newPosition) {
+        if(newPosition.z > particle.getLocalOptimumPosition().z) {
+            particle.setLocalOptimumPosition(newPosition);
         }
     }
 }

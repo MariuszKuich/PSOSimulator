@@ -43,11 +43,11 @@ public class Particle {
         this.position = position;
     }
 
-    public Coord3d localOptimumPosition() {
+    public Coord3d getLocalOptimumPosition() {
         return localOptimumPosition;
     }
 
-    public void localOptimumPosition(Coord3d localOptimumPosition) {
+    public void setLocalOptimumPosition(Coord3d localOptimumPosition) {
         this.localOptimumPosition = localOptimumPosition;
     }
 }
