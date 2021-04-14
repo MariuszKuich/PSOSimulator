@@ -120,7 +120,8 @@ public class MainViewController {
 
     @FXML
     void btnRestart_clicked(ActionEvent event) {
-
+        particlesController.resetParticles();
+        redrawChart();
     }
 
     @FXML
@@ -134,8 +135,7 @@ public class MainViewController {
         String selectedFunction = cbFunction.getSelectionModel().getSelectedItem();
         CalculationData.setFunctionFormula(functionRepository.getFunctionDataByFunctionName(selectedFunction).getFormulaMapper());
         particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
-        CalculationData.setGlobalOptimumPosition(null);
-        particlesController.initializeParticlesWithRandomLocations();
+        particlesController.resetParticles();
 
         redrawChart();
     }

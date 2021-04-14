@@ -101,4 +101,9 @@ public class ParticlesController {
             particle.setLocalOptimumPosition(newPosition);
         }
     }
+
+    public void resetParticles() {
+        CalculationData.setGlobalOptimumPosition(null);
+        initializeParticlesWithRandomLocations();
+    }
 }
