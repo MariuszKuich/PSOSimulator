@@ -154,8 +154,9 @@ public class MainViewController {
         thread = new Thread(() -> {
             while(isPlaying) {
                 particlesController.updateParticlesVelocitiesAndCoordinates();
-                updateGlobalOptimumInformationsOnUI();
-                Platform.runLater(() -> chartController.redrawParticlesPositions());
+                Platform.runLater(() -> {
+                    chartController.redrawParticlesPositions();
+                    updateGlobalOptimumInformationsOnUI();});
                 try {
                     double baseMs = 90000;
                     Thread.sleep((long) (baseMs / CalculationData.getSpeed()));
