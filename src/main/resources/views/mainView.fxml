@@ -25,7 +25,7 @@
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="50" max="100" min="1" />
          </valueFactory>
       </Spinner>
-      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" max="300.0" prefHeight="14.0" prefWidth="253.0" value="150.0" />
+      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" min="50.0" max="500.0" prefHeight="14.0" prefWidth="253.0" value="300.0" />
       <Slider fx:id="sliderInertia" layoutX="22.0" layoutY="554.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.02" />
       <Slider fx:id="sliderLocalOptimum" layoutX="22.0" layoutY="607.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.04" />
       <Slider fx:id="sliderGlobalOptimum" layoutX="22.0" layoutY="660.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.05" />

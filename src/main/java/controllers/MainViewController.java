@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,7 +10,6 @@ import models.CalculationData;
 import models.FunctionData;
 import org.jzy3d.chart.AWTChart;
 import org.jzy3d.javafx.JavaFXChartFactory;
-import org.jzy3d.maths.Coord3d;
 import repositories.FunctionRepository;
 
 public class MainViewController {
@@ -55,6 +55,10 @@ public class MainViewController {
 
     @FXML
     private Pane pnChart;
+
+    private boolean isPlaying;
+
+    private Thread thread;
 
     public void initialize() {
         cbFunction.getItems().addAll(functionRepository.getFunctionsNamesSet());
@@ -102,7 +106,7 @@ public class MainViewController {
         spinnerMaxY.getValueFactory().setValue(function.getDefaultMaxY());
     }
 
-    private void redrawChart() {
+    public void redrawChart() {
         pnChart.getChildren().clear();
         JavaFXChartFactory factory = new JavaFXChartFactory();
         AWTChart chart  = chartController.getDemoChart(factory, "offscreen", CalculationData.getFunctionFormula());
@@ -114,23 +118,47 @@ public class MainViewController {
 
     @FXML
     void btnNextStep_clicked(ActionEvent event) {
+        if(isPlaying) {
+            return;
+        }
         particlesController.updateParticlesVelocitiesAndCoordinates();
         redrawChart();
     }
 
     @FXML
     void btnRestart_clicked(ActionEvent event) {
+        isPlaying = false;
         particlesController.resetParticles();
         redrawChart();
     }
 
     @FXML
     void btnStartStop_clicked(ActionEvent event) {
+        isPlaying = !isPlaying;
+        if(isPlaying) {
+            startAnimation();
+        }
+    }
 
+    private void startAnimation() {
+        thread = new Thread(() -> {
+            while(isPlaying) {
+                particlesController.updateParticlesVelocitiesAndCoordinates();
+                Platform.runLater(() -> redrawChart());
+                try {
+                    double baseMs = 90000;
+                    Thread.sleep((long) (baseMs / CalculationData.getSpeed()));
+                } catch (InterruptedException e) {
+                    System.out.println("Thread interrupted during sleep.");
+                }
+            }
+        });
+        thread.start();
     }
 
     @FXML
     void btnUpdateFunction_clicked(ActionEvent event) {
+        isPlaying = false;
         variablesRangesGetValues();
         String selectedFunction = cbFunction.getSelectionModel().getSelectedItem();
         CalculationData.setFunctionFormula(functionRepository.getFunctionDataByFunctionName(selectedFunction).getFormulaMapper());

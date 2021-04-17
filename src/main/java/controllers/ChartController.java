@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.scene.transform.Scale;
 import models.CalculationData;
 import models.Particle;
 import org.jzy3d.chart.AWTChart;
@@ -14,11 +13,8 @@ import org.jzy3d.plot3d.builder.Builder;
 import org.jzy3d.plot3d.builder.Mapper;
 import org.jzy3d.plot3d.builder.concrete.OrthonormalGrid;
 import org.jzy3d.plot3d.primitives.Scatter;
-import org.jzy3d.plot3d.primitives.ScatterMultiColor;
 import org.jzy3d.plot3d.primitives.Shape;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
-
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class ChartController {
