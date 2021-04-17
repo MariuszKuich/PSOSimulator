@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import models.CalculationData;
 import models.FunctionData;
-import org.jzy3d.chart.AWTChart;
 import org.jzy3d.javafx.JavaFXChartFactory;
 import repositories.FunctionRepository;
 
@@ -96,6 +95,15 @@ public class MainViewController {
         btnUpdateFunction_clicked(new ActionEvent());
     }
 
+    private void addChartToPane() {
+        pnChart.getChildren().clear();
+        chartController.redrawChart();
+        ImageView imageView = new JavaFXChartFactory().bindImageView(chartController.getChart());
+        imageView.setFitHeight(500.0);
+        imageView.setFitWidth(500.0);
+        pnChart.getChildren().add(imageView);
+    }
+
     private void updateFunctionDataControls(String functionName) {
         FunctionData function = functionRepository.getFunctionDataByFunctionName(functionName);
 
@@ -106,30 +114,20 @@ public class MainViewController {
         spinnerMaxY.getValueFactory().setValue(function.getDefaultMaxY());
     }
 
-    public void redrawChart() {
-        pnChart.getChildren().clear();
-        JavaFXChartFactory factory = new JavaFXChartFactory();
-        AWTChart chart  = chartController.getDemoChart(factory, "offscreen", CalculationData.getFunctionFormula());
-        ImageView imageView = factory.bindImageView(chart);
-        imageView.setFitHeight(500.0);
-        imageView.setFitWidth(500.0);
-        pnChart.getChildren().add(imageView);
-    }
-
     @FXML
     void btnNextStep_clicked(ActionEvent event) {
         if(isPlaying) {
             return;
         }
         particlesController.updateParticlesVelocitiesAndCoordinates();
-        redrawChart();
+        chartController.redrawParticlesPositions();
     }
 
     @FXML
     void btnRestart_clicked(ActionEvent event) {
         isPlaying = false;
         particlesController.resetParticles();
-        redrawChart();
+        chartController.redrawParticlesPositions();
     }
 
     @FXML
@@ -144,7 +142,7 @@ public class MainViewController {
         thread = new Thread(() -> {
             while(isPlaying) {
                 particlesController.updateParticlesVelocitiesAndCoordinates();
-                Platform.runLater(() -> redrawChart());
+                Platform.runLater(() -> chartController.redrawParticlesPositions());
                 try {
                     double baseMs = 90000;
                     Thread.sleep((long) (baseMs / CalculationData.getSpeed()));
@@ -165,7 +163,7 @@ public class MainViewController {
         particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
         particlesController.resetParticles();
 
-        redrawChart();
+        addChartToPane();
     }
 
     private void variablesRangesGetValues() {
