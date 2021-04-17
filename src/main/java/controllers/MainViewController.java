@@ -9,7 +9,10 @@ import javafx.scene.layout.Pane;
 import models.CalculationData;
 import models.FunctionData;
 import org.jzy3d.javafx.JavaFXChartFactory;
+import org.jzy3d.maths.Coord3d;
 import repositories.FunctionRepository;
+
+import java.text.DecimalFormat;
 
 public class MainViewController {
 
@@ -51,6 +54,15 @@ public class MainViewController {
 
     @FXML
     private Slider sliderGlobalOptimum;
+
+    @FXML
+    private TextField tfGlobalOptimumX;
+
+    @FXML
+    private TextField tfGlobalOptimumY;
+
+    @FXML
+    private TextField tfGlobalOptimumZ;
 
     @FXML
     private Pane pnChart;
@@ -99,8 +111,6 @@ public class MainViewController {
         pnChart.getChildren().clear();
         chartController.redrawChart();
         ImageView imageView = new JavaFXChartFactory().bindImageView(chartController.getChart());
-        imageView.setFitHeight(500.0);
-        imageView.setFitWidth(500.0);
         pnChart.getChildren().add(imageView);
     }
 
@@ -121,6 +131,7 @@ public class MainViewController {
         }
         particlesController.updateParticlesVelocitiesAndCoordinates();
         chartController.redrawParticlesPositions();
+        updateGlobalOptimumInformationsOnUI();
     }
 
     @FXML
@@ -128,6 +139,7 @@ public class MainViewController {
         isPlaying = false;
         particlesController.resetParticles();
         chartController.redrawParticlesPositions();
+        updateGlobalOptimumInformationsOnUI();
     }
 
     @FXML
@@ -142,6 +154,7 @@ public class MainViewController {
         thread = new Thread(() -> {
             while(isPlaying) {
                 particlesController.updateParticlesVelocitiesAndCoordinates();
+                updateGlobalOptimumInformationsOnUI();
                 Platform.runLater(() -> chartController.redrawParticlesPositions());
                 try {
                     double baseMs = 90000;
@@ -162,6 +175,7 @@ public class MainViewController {
         CalculationData.setFunctionFormula(functionRepository.getFunctionDataByFunctionName(selectedFunction).getFormulaMapper());
         particlesController.setParticlesNumber(spinnerNumberOfParticles.getValue());
         particlesController.resetParticles();
+        updateGlobalOptimumInformationsOnUI();
 
         addChartToPane();
     }
@@ -171,6 +185,14 @@ public class MainViewController {
         CalculationData.setMaxX(spinnerMaxX.getValue());
         CalculationData.setMinY(spinnerMinY.getValue());
         CalculationData.setMaxY(spinnerMaxY.getValue());
+    }
+
+    private void updateGlobalOptimumInformationsOnUI() {
+        Coord3d globalOptimumCoords = CalculationData.getGlobalOptimumPosition();
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        tfGlobalOptimumX.setText(decimalFormat.format(globalOptimumCoords.x));
+        tfGlobalOptimumY.setText(decimalFormat.format(globalOptimumCoords.y));
+        tfGlobalOptimumZ.setText(decimalFormat.format(globalOptimumCoords.z));
     }
 
     @FXML

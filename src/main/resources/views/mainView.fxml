@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
       <Button fx:id="btnStartStop" layoutX="25.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStartStop_clicked" prefHeight="35.0" prefWidth="70.0" text="Start/Stop" />
       <Button fx:id="btnNextStep" layoutX="117.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnNextStep_clicked" prefHeight="35.0" prefWidth="70.0" text="Next Step" />
@@ -25,11 +25,11 @@
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="50" max="100" min="1" />
          </valueFactory>
       </Spinner>
-      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" min="50.0" max="500.0" prefHeight="14.0" prefWidth="253.0" value="300.0" />
+      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" max="500.0" min="50.0" prefHeight="14.0" prefWidth="253.0" value="300.0" />
       <Slider fx:id="sliderInertia" layoutX="22.0" layoutY="554.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.02" />
       <Slider fx:id="sliderLocalOptimum" layoutX="22.0" layoutY="607.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.04" />
       <Slider fx:id="sliderGlobalOptimum" layoutX="22.0" layoutY="660.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.05" />
-      <Pane fx:id="pnChart" layoutX="294.0" layoutY="19.0" prefHeight="671.0" prefWidth="990.0">
+      <Pane fx:id="pnChart" layoutX="306.0" layoutY="32.0" prefHeight="500.0" prefWidth="500.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Pane>
@@ -57,5 +57,12 @@
       <Label alignment="CENTER" layoutX="155.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="min Y" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="max Y" />
       <Label alignment="CENTER" layoutX="91.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="max X" />
+      <Label layoutX="306.0" layoutY="542.0" prefHeight="25.0" prefWidth="179.0" text="Current global optimum position" />
+      <Label layoutX="306.0" layoutY="570.0" prefHeight="35.0" prefWidth="179.0" text="X" />
+      <Label layoutX="306.0" layoutY="607.0" prefHeight="35.0" prefWidth="179.0" text="Y" />
+      <Label layoutX="306.0" layoutY="643.0" prefHeight="35.0" prefWidth="179.0" text="Z" />
+      <TextField fx:id="tfGlobalOptimumX" editable="false" layoutX="321.0" layoutY="575.0" prefHeight="25.0" prefWidth="59.0" />
+      <TextField fx:id="tfGlobalOptimumY" editable="false" layoutX="321.0" layoutY="612.0" prefHeight="25.0" prefWidth="59.0" />
+      <TextField fx:id="tfGlobalOptimumZ" editable="false" layoutX="321.0" layoutY="648.0" prefHeight="25.0" prefWidth="59.0" />
    </children>
 </AnchorPane>
