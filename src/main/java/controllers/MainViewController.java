@@ -107,13 +107,6 @@ public class MainViewController {
         btnUpdateFunction_clicked(new ActionEvent());
     }
 
-    private void addChartToPane() {
-        pnChart.getChildren().clear();
-        chartController.redrawChart();
-        ImageView imageView = new JavaFXChartFactory().bindImageView(chartController.getChart());
-        pnChart.getChildren().add(imageView);
-    }
-
     private void updateFunctionDataControls(String functionName) {
         FunctionData function = functionRepository.getFunctionDataByFunctionName(functionName);
 
@@ -122,6 +115,13 @@ public class MainViewController {
         spinnerMaxX.getValueFactory().setValue(function.getDefaultMaxX());
         spinnerMinY.getValueFactory().setValue(function.getDefaultMinY());
         spinnerMaxY.getValueFactory().setValue(function.getDefaultMaxY());
+    }
+
+    private void addChartToPane() {
+        pnChart.getChildren().clear();
+        chartController.redrawChart();
+        ImageView imageView = new JavaFXChartFactory().bindImageView(chartController.getChart());
+        pnChart.getChildren().add(imageView);
     }
 
     @FXML

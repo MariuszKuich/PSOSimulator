@@ -35,22 +35,22 @@
          </cursor></Pane>
       <Spinner fx:id="spinnerMinX" editable="true" layoutX="27.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
          <valueFactory>
-            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="50" min="-50" />
+            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
       <Spinner fx:id="spinnerMaxX" layoutX="91.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
          <valueFactory>
-            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="50" min="-50" />
+            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
       <Spinner fx:id="spinnerMaxY" layoutX="220.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
          <valueFactory>
-            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="50" min="-50" />
+            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
       <Spinner fx:id="spinnerMinY" layoutX="155.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
          <valueFactory>
-            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="50" min="-50" />
+            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
       <Label alignment="CENTER" layoutX="27.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="min X" />
