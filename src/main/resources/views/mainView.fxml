@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
       <Button fx:id="btnStartStop" layoutX="25.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStartStop_clicked" prefHeight="35.0" prefWidth="82.0" text="Start/Stop" />
       <Button fx:id="btnNextStep" layoutX="133.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnNextStep_clicked" prefHeight="35.0" prefWidth="82.0" text="Next Step" />
@@ -59,8 +59,8 @@
       <Label alignment="CENTER" layoutX="102.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="max X" />
       <Label layoutX="341.0" layoutY="542.0" prefHeight="25.0" prefWidth="179.0" text="Current global optimum position" />
       <Label layoutX="341.0" layoutY="570.0" prefHeight="35.0" prefWidth="179.0" text="X" />
-      <Label layoutX="341.0" layoutY="602.0" prefHeight="35.0" prefWidth="179.0" text="Y" />
-      <Label layoutX="341.0" layoutY="638.0" prefHeight="35.0" prefWidth="179.0" text="Z" />
+      <Label layoutX="341.0" layoutY="607.0" prefHeight="35.0" prefWidth="179.0" text="Y" />
+      <Label layoutX="341.0" layoutY="643.0" prefHeight="35.0" prefWidth="179.0" text="Z" />
       <TextField fx:id="tfGlobalOptimumX" editable="false" layoutX="356.0" layoutY="575.0" prefHeight="25.0" prefWidth="159.0" />
       <TextField fx:id="tfGlobalOptimumY" editable="false" layoutX="356.0" layoutY="612.0" prefHeight="25.0" prefWidth="159.0" />
       <TextField fx:id="tfGlobalOptimumZ" editable="false" layoutX="356.0" layoutY="648.0" prefHeight="25.0" prefWidth="159.0" />
