@@ -190,7 +190,7 @@ public class MainViewController {
 
     private void updateGlobalOptimumInformationsOnUI() {
         Coord3d globalOptimumCoords = CalculationData.getGlobalOptimumPosition();
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        DecimalFormat decimalFormat = new DecimalFormat("0.0000000000000000000");
         tfGlobalOptimumX.setText(decimalFormat.format(globalOptimumCoords.x));
         tfGlobalOptimumY.setText(decimalFormat.format(globalOptimumCoords.y));
         tfGlobalOptimumZ.setText(decimalFormat.format(globalOptimumCoords.z));

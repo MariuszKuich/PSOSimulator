@@ -4,65 +4,65 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
-      <Button fx:id="btnStartStop" layoutX="25.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStartStop_clicked" prefHeight="35.0" prefWidth="70.0" text="Start/Stop" />
-      <Button fx:id="btnNextStep" layoutX="117.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnNextStep_clicked" prefHeight="35.0" prefWidth="70.0" text="Next Step" />
-      <Button fx:id="btnRestart" layoutX="209.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnRestart_clicked" prefHeight="35.0" prefWidth="70.0" text="Restart" />
+      <Button fx:id="btnStartStop" layoutX="25.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStartStop_clicked" prefHeight="35.0" prefWidth="82.0" text="Start/Stop" />
+      <Button fx:id="btnNextStep" layoutX="133.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnNextStep_clicked" prefHeight="35.0" prefWidth="82.0" text="Next Step" />
+      <Button fx:id="btnRestart" layoutX="242.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnRestart_clicked" prefHeight="35.0" prefWidth="82.0" text="Restart" />
       <Label layoutX="27.0" layoutY="75.0" prefHeight="25.0" prefWidth="138.0" text="Analyzed function" />
-      <ChoiceBox fx:id="cbFunction" layoutX="27.0" layoutY="107.0" onAction="#cbFunction_selectedItemChanged" prefHeight="25.0" prefWidth="253.0" />
+      <ChoiceBox fx:id="cbFunction" layoutX="27.0" layoutY="107.0" onAction="#cbFunction_selectedItemChanged" prefHeight="25.0" prefWidth="296.0" />
       <Label layoutX="27.0" layoutY="145.0" prefHeight="25.0" prefWidth="138.0" text="Function formula" />
-      <TextArea fx:id="taFunctionFormula" editable="false" layoutX="27.0" layoutY="177.0" prefHeight="88.0" prefWidth="253.0" wrapText="true" />
+      <TextArea fx:id="taFunctionFormula" editable="false" layoutX="27.0" layoutY="177.0" prefHeight="88.0" prefWidth="296.0" wrapText="true" />
       <Label layoutX="27.0" layoutY="277.0" prefHeight="25.0" prefWidth="138.0" text="Range of variables" />
-      <Button fx:id="btnUpdateFunction" layoutX="28.0" layoutY="432.0" mnemonicParsing="false" onAction="#btnUpdateFunction_clicked" prefHeight="35.0" prefWidth="253.0" text="Update function" />
+      <Button fx:id="btnUpdateFunction" layoutX="28.0" layoutY="432.0" mnemonicParsing="false" onAction="#btnUpdateFunction_clicked" prefHeight="35.0" prefWidth="296.0" text="Update function" />
       <Label layoutX="26.0" layoutY="362.0" prefHeight="25.0" prefWidth="138.0" text="Number of particles" />
       <Label layoutX="26.0" layoutY="529.0" prefHeight="25.0" prefWidth="138.0" text="Inertia" />
       <Label layoutX="26.0" layoutY="582.0" prefHeight="25.0" prefWidth="168.0" text="Aspiration for local optimum" />
       <Label layoutX="26.0" layoutY="635.0" prefHeight="25.0" prefWidth="211.0" text="Aspiration for global optimum" />
       <Label layoutX="26.0" layoutY="475.0" prefHeight="25.0" prefWidth="138.0" text="Speed" />
-      <Spinner fx:id="spinnerNumberOfParticles" layoutX="27.0" layoutY="393.0" prefHeight="25.0" prefWidth="253.0">
+      <Spinner fx:id="spinnerNumberOfParticles" layoutX="27.0" layoutY="393.0" prefHeight="25.0" prefWidth="296.0">
          <valueFactory>
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="50" max="100" min="1" />
          </valueFactory>
       </Spinner>
-      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" max="500.0" min="50.0" prefHeight="14.0" prefWidth="253.0" value="300.0" />
-      <Slider fx:id="sliderInertia" layoutX="22.0" layoutY="554.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.02" />
-      <Slider fx:id="sliderLocalOptimum" layoutX="22.0" layoutY="607.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.04" />
-      <Slider fx:id="sliderGlobalOptimum" layoutX="22.0" layoutY="660.0" max="0.1" prefHeight="14.0" prefWidth="253.0" value="0.05" />
-      <Pane fx:id="pnChart" layoutX="306.0" layoutY="32.0" prefHeight="500.0" prefWidth="500.0">
+      <Slider fx:id="sliderSpeed" layoutX="22.0" layoutY="500.0" max="500.0" min="50.0" prefHeight="14.0" prefWidth="303.0" value="300.0" />
+      <Slider fx:id="sliderInertia" layoutX="22.0" layoutY="554.0" max="0.1" prefHeight="14.0" prefWidth="303.0" value="0.02" />
+      <Slider fx:id="sliderLocalOptimum" layoutX="22.0" layoutY="607.0" max="0.1" prefHeight="14.0" prefWidth="303.0" value="0.04" />
+      <Slider fx:id="sliderGlobalOptimum" layoutX="22.0" layoutY="660.0" max="0.1" prefHeight="14.0" prefWidth="303.0" value="0.05" />
+      <Pane fx:id="pnChart" layoutX="341.0" layoutY="27.0" prefHeight="500.0" prefWidth="500.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Pane>
-      <Spinner fx:id="spinnerMinX" editable="true" layoutX="27.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
+      <Spinner fx:id="spinnerMinX" editable="true" layoutX="27.0" layoutY="307.0" prefHeight="25.0" prefWidth="70.0">
          <valueFactory>
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
-      <Spinner fx:id="spinnerMaxX" layoutX="91.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
+      <Spinner fx:id="spinnerMaxX" layoutX="102.0" layoutY="307.0" prefHeight="25.0" prefWidth="70.0">
          <valueFactory>
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
-      <Spinner fx:id="spinnerMaxY" layoutX="220.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
+      <Spinner fx:id="spinnerMaxY" layoutX="252.0" layoutY="307.0" prefHeight="25.0" prefWidth="70.0">
          <valueFactory>
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
-      <Spinner fx:id="spinnerMinY" layoutX="155.0" layoutY="307.0" prefHeight="25.0" prefWidth="59.0">
+      <Spinner fx:id="spinnerMinY" layoutX="177.0" layoutY="307.0" prefHeight="25.0" prefWidth="70.0">
          <valueFactory>
             <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" max="500" min="-500" />
          </valueFactory>
       </Spinner>
-      <Label alignment="CENTER" layoutX="27.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="min X" />
-      <Label alignment="CENTER" layoutX="155.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="min Y" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="max Y" />
-      <Label alignment="CENTER" layoutX="91.0" layoutY="335.0" prefHeight="25.0" prefWidth="59.0" text="max X" />
-      <Label layoutX="306.0" layoutY="542.0" prefHeight="25.0" prefWidth="179.0" text="Current global optimum position" />
-      <Label layoutX="306.0" layoutY="570.0" prefHeight="35.0" prefWidth="179.0" text="X" />
-      <Label layoutX="306.0" layoutY="607.0" prefHeight="35.0" prefWidth="179.0" text="Y" />
-      <Label layoutX="306.0" layoutY="643.0" prefHeight="35.0" prefWidth="179.0" text="Z" />
-      <TextField fx:id="tfGlobalOptimumX" editable="false" layoutX="321.0" layoutY="575.0" prefHeight="25.0" prefWidth="59.0" />
-      <TextField fx:id="tfGlobalOptimumY" editable="false" layoutX="321.0" layoutY="612.0" prefHeight="25.0" prefWidth="59.0" />
-      <TextField fx:id="tfGlobalOptimumZ" editable="false" layoutX="321.0" layoutY="648.0" prefHeight="25.0" prefWidth="59.0" />
+      <Label alignment="CENTER" layoutX="27.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="min X" />
+      <Label alignment="CENTER" layoutX="177.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="min Y" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="max Y" />
+      <Label alignment="CENTER" layoutX="102.0" layoutY="335.0" prefHeight="25.0" prefWidth="70.0" text="max X" />
+      <Label layoutX="341.0" layoutY="542.0" prefHeight="25.0" prefWidth="179.0" text="Current global optimum position" />
+      <Label layoutX="341.0" layoutY="570.0" prefHeight="35.0" prefWidth="179.0" text="X" />
+      <Label layoutX="341.0" layoutY="602.0" prefHeight="35.0" prefWidth="179.0" text="Y" />
+      <Label layoutX="341.0" layoutY="638.0" prefHeight="35.0" prefWidth="179.0" text="Z" />
+      <TextField fx:id="tfGlobalOptimumX" editable="false" layoutX="356.0" layoutY="575.0" prefHeight="25.0" prefWidth="159.0" />
+      <TextField fx:id="tfGlobalOptimumY" editable="false" layoutX="356.0" layoutY="612.0" prefHeight="25.0" prefWidth="159.0" />
+      <TextField fx:id="tfGlobalOptimumZ" editable="false" layoutX="356.0" layoutY="648.0" prefHeight="25.0" prefWidth="159.0" />
    </children>
 </AnchorPane>
