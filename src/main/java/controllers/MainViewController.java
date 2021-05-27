@@ -11,7 +11,6 @@ import models.FunctionData;
 import org.jzy3d.javafx.JavaFXChartFactory;
 import org.jzy3d.maths.Coord3d;
 import repositories.FunctionRepository;
-
 import java.text.DecimalFormat;
 
 public class MainViewController {

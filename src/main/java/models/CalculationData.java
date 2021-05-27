@@ -2,7 +2,6 @@ package models;
 
 import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.builder.Mapper;
-
 import java.util.List;
 
 public abstract class CalculationData {
