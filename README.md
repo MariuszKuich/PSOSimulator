@@ -1,7 +1,7 @@
 # PSOSimulator
----
-Aplikacja pozwalająca symulować działanie metaheurystycznego algorytmu PSO (Particle Swarm Optimization). Napisana w języku Java z wykorzystaniem JavaFX, biblioteki Jzy3d oraz narzędzia Maven do zarządzania zależnościami.
----
+___
+### Aplikacja pozwalająca symulować działanie metaheurystycznego algorytmu PSO (Particle Swarm Optimization). Napisana w języku Java z wykorzystaniem JavaFX, biblioteki Jzy3d oraz narzędzia Maven do zarządzania zależnościami.
+___
 W katalogu /src znajduje się kod źródłowy. W katalogu /jarFile znajduje się plik PSOSimulator.jar będący wersją uruchomieniową aplikacji zawierającą wszystkie potrzebne zależności. Do uruchomienia programu wystarczy przejść do katalogu /jarFIle i wydać komendę:
 ```
 java -jar PSOSimulator.jar
